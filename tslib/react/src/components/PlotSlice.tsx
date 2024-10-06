@@ -222,10 +222,10 @@ const plotSlice = (
   )
 
   const feasibleValues = feasibleTrials.map(
-    (t) => selectedParamTarget.getTargetValue(t) as number
+    (t) => selectedParamTarget.getTargetValue(t) as string | number
   )
   const infeasibleValues = infeasibleTrials.map(
-    (t) => selectedParamTarget.getTargetValue(t) as number
+    (t) => selectedParamTarget.getTargetValue(t) as string | number
   )
   const trace: plotly.Data[] = [
     {
@@ -268,7 +268,7 @@ const plotSlice = (
     }
   } else {
     const vocabArr = selectedParamSpace.distribution.choices.map(
-      (c) => c?.toString() ?? "null"
+      (c) => c?.value?.toString() ?? "null"
     )
     const tickvals: number[] = vocabArr.map((_v, i) => i)
     layout.xaxis = {
